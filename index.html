@@ -232,17 +232,17 @@
     <div style="display:flex; flex-direction:column; gap:5%; padding-left:3%;">
 
       <div>
-        <div class="label" style="margin-bottom:4%;">Job to Be Done</div>
-        <div style="
-          font-family: 'Playfair Display', serif;
-          font-size: clamp(12px, 1.35vw, 17px);
-          font-weight: 400;
-          font-style: italic;
-          color: var(--ink);
-          line-height: 1.65;
-          padding-left: 4%;
-          border-left: 2px solid var(--gold);
-        ">"I need to quickly investigate risks, reduce repetitive work, and maintain security posture without spending time building complex workflows."</div>
+        <div class="label" style="margin-bottom:4%;">Main Scenarios</div>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <div style="display:flex; gap:4%; align-items:baseline;">
+            <div class="num" style="flex-shrink:0;">01</div>
+            <div class="body" style="color:var(--ink); font-weight:500;">Investigating a recurring policy violation and wanting to automate the response without leaving the current workflow.</div>
+          </div>
+          <div style="display:flex; gap:4%; align-items:baseline;">
+            <div class="num" style="flex-shrink:0;">02</div>
+            <div class="body" style="color:var(--ink); font-weight:500;">Proactively building automation rules to cover known risk patterns before they escalate.</div>
+          </div>
+        </div>
       </div>
 
       <div>
@@ -279,30 +279,22 @@
   <div class="label">Discovery & Research</div>
   <div class="title">Key Findings</div>
 
-  <div style="flex:1; display:grid; grid-template-columns:1fr 1fr; gap:0 8%;">
+  <div style="flex:1; display:flex; flex-direction:column; justify-content:center; gap:8%;">
 
-    <div>
-      <div class="ghost">01</div>
-      <div class="h2">Repetition Creates Opportunity</div>
-      <div class="body">Many policy violations require similar actions repeatedly — a clear signal for automation.</div>
+    <div style="display:flex; gap:5%; align-items:baseline;">
+      <div class="ghost" style="margin-bottom:0; flex-shrink:0;">01</div>
+      <div>
+        <div class="h2" style="margin-bottom:2%;">Analysts see the same violations repeatedly and remediate them manually each time.</div>
+        <div class="body">The trigger for automation is always present — but the entry point to create a rule is disconnected from where the work happens.</div>
+      </div>
     </div>
 
-    <div>
-      <div class="ghost">02</div>
-      <div class="h2">Automation Discovery Happens Too Late</div>
-      <div class="body">Users encounter automation after they already understand the issue — the entry point is wrong.</div>
-    </div>
-
-    <div>
-      <div class="ghost">03</div>
-      <div class="h2">Trust Is Required Before Action</div>
-      <div class="body">Users need to understand what will happen, why it works, and what impact it will have.</div>
-    </div>
-
-    <div>
-      <div class="ghost">04</div>
-      <div class="h2">Context Matters</div>
-      <div class="body">Recommendations are strongest when surfaced where the problem exists, not in a separate panel.</div>
+    <div style="display:flex; gap:5%; align-items:baseline;">
+      <div class="ghost" style="margin-bottom:0; flex-shrink:0;">02</div>
+      <div>
+        <div class="h2" style="margin-bottom:2%;">Users won't activate automation they don't understand or trust.</div>
+        <div class="body">Before enabling a rule, analysts need to see what it will do, why it applies, and what the impact will be — confidence must come before commitment.</div>
+      </div>
     </div>
 
   </div>
