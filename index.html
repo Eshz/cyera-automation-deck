@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Automation Engine — Cyera</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:    #F7F6F2;
+    --ink:   #252320;   /* warm near-black — 16:1 contrast on bg */
+    --mid:   #484642;   /* body text — 8.5:1 on bg, AAA */
+    --sub:   #6A6760;   /* labels — 4.8:1 on bg, AA */
+    --pale:  #CCCAC4;   /* ghost numbers, decorative only */
+    --gold:  #9C7A3C;   /* accent — decorative + large text only */
+    --frame: #E2DFDA;   /* page background behind slides */
+  }
+
+  html, body {
+    min-height: 100%;
+    background: var(--frame);
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    color: var(--ink);
+  }
+
+  /* ── page wrapper ───────────────────────────── */
+  .page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 24px;
+    gap: 48px;
+  }
+
+  /* ── 16:9 slide frame ───────────────────────── */
+  .slide {
+    width: min(92vw, 1140px);
+    aspect-ratio: 16 / 9;
+    background: var(--bg);
+    box-shadow: 0 2px 32px rgba(0,0,0,.1);
+    overflow: hidden;
+    position: relative;
+    padding: 6% 7%;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+  }
+
+  /* ── type atoms ─────────────────────────────── */
+
+  .label {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(8px, .72vw, 10px);
+    font-weight: 500;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--sub);
+    margin-bottom: 3%;
+  }
+
+  .title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(30px, 4.8vw, 64px);
+    font-weight: 600;
+    color: var(--ink);
+    line-height: .96;
+    letter-spacing: -.01em;
+    margin-bottom: 7%;
+  }
+
+  .h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(13px, 1.4vw, 18px);
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -.005em;
+    line-height: 1.25;
+    margin-bottom: 3%;
+  }
+
+  .body {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(10px, 1vw, 13px);
+    font-weight: 400;
+    color: var(--mid);
+    line-height: 1.75;
+  }
+
+  .ghost {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4.5vw, 58px);
+    font-weight: 700;
+    color: var(--pale);
+    letter-spacing: -.02em;
+    line-height: 1;
+    margin-bottom: 8%;
+  }
+
+  .num {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(8px, .72vw, 10px);
+    font-weight: 600;
+    letter-spacing: .1em;
+    color: var(--gold);
+    margin-bottom: 3%;
+  }
+
+</style>
+</head>
+<body>
+<div class="page">
+
+
+<!-- ━━━━━━━━━━━━━━  01  COVER  ━━━━━━━━━━━━━━━━━━━ -->
+<div class="slide">
+  <div style="display:flex; flex-direction:column; height:100%;">
+
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-shrink:0;">
+      <div class="label">Product Design — Home Assignment</div>
+      <div class="label">Cyera &nbsp;·&nbsp; 2026</div>
+    </div>
+
+    <div style="flex:1;"></div>
+
+    <div style="flex-shrink:0;">
+      <div style="
+        font-family: 'Playfair Display', Georgia, serif;
+        font-size: clamp(48px, 8vw, 106px);
+        font-weight: 700;
+        color: var(--ink);
+        line-height: .88;
+        letter-spacing: -.02em;
+        margin-bottom: 5%;
+      ">Automation<br>Engine</div>
+
+      <div style="display:flex; justify-content:space-between; align-items:flex-end;">
+        <div style="
+          font-family: 'Inter', sans-serif;
+          font-size: clamp(12px, 1.3vw, 16px);
+          font-weight: 300;
+          color: var(--mid);
+          line-height: 1.55;
+        ">Using AI &amp; Natural Language<br>to Increase Automation Adoption</div>
+        <div style="text-align:right;">
+          <div class="label" style="margin-bottom:2px;">Designer</div>
+          <div style="font-family:'Inter',sans-serif; font-size:clamp(11px,1.1vw,14px); font-weight:500; color:var(--ink);">Eshchar Zychlinski</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ━━━━━━━━━━━━━━  02  THE CHALLENGE  ━━━━━━━━━━━━ -->
+<div class="slide">
+
+  <div class="label">The Challenge</div>
+  <div class="title">Enable analysts<br>to adopt automation.</div>
+
+  <div style="flex:1; display:grid; grid-template-columns:1fr 1fr 1fr; gap:0 7%;">
+
+    <div>
+      <div class="label" style="margin-bottom:4%;">Assignment</div>
+      <div class="body">Enable security analysts to create and adopt automations more easily.</div>
+    </div>
+
+    <div>
+      <div class="label" style="margin-bottom:4%;">Current Reality</div>
+      <div style="display:flex; flex-direction:column; gap:7px;">
+        <div class="body">— Automation capabilities exist</div>
+        <div class="body">— Analysts still handle repetitive remediation manually</div>
+        <div class="body">— Creating automations requires effort and context switching</div>
+        <div class="body">— Many opportunities remain unautomated</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="label" style="margin-bottom:4%;">Objective</div>
+      <div class="body" style="margin-bottom:5%;">Use LLMs and natural language to:</div>
+      <div style="display:flex; flex-direction:column; gap:7px;">
+        <div class="body"><span style="color:var(--gold);">✓</span>&nbsp; Reduce friction</div>
+        <div class="body"><span style="color:var(--gold);">✓</span>&nbsp; Increase automation adoption</div>
+        <div class="body"><span style="color:var(--gold);">✓</span>&nbsp; Improve conversion from issue discovery to activation</div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ━━━━━━━━━━━━━━  03  PERSONA  ━━━━━━━━━━━━━━━━━ -->
+<div class="slide">
+
+  <div class="label">Persona</div>
+
+  <div style="flex:1; display:grid; grid-template-columns:1fr 1px 1.5fr; gap:0 5%;">
+
+    <!-- left: photo + name -->
+    <div style="display:flex; flex-direction:column; justify-content:flex-end; gap:4%;">
+      <div style="
+        flex:1;
+        overflow:hidden;
+        max-height:72%;
+      ">
+        <img
+          src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=480&h=560&fit=crop&crop=face&q=80"
+          alt="Security Analyst"
+          style="width:100%; height:100%; object-fit:cover; display:block; filter:grayscale(15%);"
+          onerror="this.style.display='none'"
+        />
+      </div>
+      <div>
+        <div class="label" style="margin-bottom:2%;">Primary Persona</div>
+        <div class="title" style="margin-bottom:0; font-size:clamp(22px,3.2vw,42px);">Security<br>Analyst</div>
+      </div>
+    </div>
+
+    <div style="width:1px; background:var(--frame); align-self:stretch;"></div>
+
+    <!-- right: JTBD + needs -->
+    <div style="display:flex; flex-direction:column; gap:5%; padding-left:3%;">
+
+      <div>
+        <div class="label" style="margin-bottom:4%;">Job to Be Done</div>
+        <div style="
+          font-family: 'Playfair Display', serif;
+          font-size: clamp(12px, 1.35vw, 17px);
+          font-weight: 400;
+          font-style: italic;
+          color: var(--ink);
+          line-height: 1.65;
+          padding-left: 4%;
+          border-left: 2px solid var(--gold);
+        ">"I need to quickly investigate risks, reduce repetitive work, and maintain security posture without spending time building complex workflows."</div>
+      </div>
+
+      <div>
+        <div class="label" style="margin-bottom:4%;">Key Needs</div>
+        <div style="display:flex; flex-direction:column; gap:0;">
+          <div style="display:flex; gap:4%; padding:2.5% 0; border-bottom:1px solid var(--frame);">
+            <div class="num" style="flex-shrink:0; padding-top:.1em;">01</div>
+            <div class="h2" style="margin-bottom:0; font-size:clamp(11px,1.15vw,14px);">Fast Remediation</div>
+          </div>
+          <div style="display:flex; gap:4%; padding:2.5% 0; border-bottom:1px solid var(--frame);">
+            <div class="num" style="flex-shrink:0; padding-top:.1em;">02</div>
+            <div class="h2" style="margin-bottom:0; font-size:clamp(11px,1.15vw,14px);">Confidence Before Execution</div>
+          </div>
+          <div style="display:flex; gap:4%; padding:2.5% 0; border-bottom:1px solid var(--frame);">
+            <div class="num" style="flex-shrink:0; padding-top:.1em;">03</div>
+            <div class="h2" style="margin-bottom:0; font-size:clamp(11px,1.15vw,14px);">Minimal Workflow Disruption</div>
+          </div>
+          <div style="display:flex; gap:4%; padding:2.5% 0;">
+            <div class="num" style="flex-shrink:0; padding-top:.1em;">04</div>
+            <div class="h2" style="margin-bottom:0; font-size:clamp(11px,1.15vw,14px);">Clear Business Impact</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ━━━━━━━━━━━━━━  04  RESEARCH  ━━━━━━━━━━━━━━━━ -->
+<div class="slide">
+
+  <div class="label">Discovery & Research</div>
+  <div class="title">Key Findings</div>
+
+  <div style="flex:1; display:grid; grid-template-columns:1fr 1fr; gap:0 8%;">
+
+    <div>
+      <div class="ghost">01</div>
+      <div class="h2">Repetition Creates Opportunity</div>
+      <div class="body">Many policy violations require similar actions repeatedly — a clear signal for automation.</div>
+    </div>
+
+    <div>
+      <div class="ghost">02</div>
+      <div class="h2">Automation Discovery Happens Too Late</div>
+      <div class="body">Users encounter automation after they already understand the issue — the entry point is wrong.</div>
+    </div>
+
+    <div>
+      <div class="ghost">03</div>
+      <div class="h2">Trust Is Required Before Action</div>
+      <div class="body">Users need to understand what will happen, why it works, and what impact it will have.</div>
+    </div>
+
+    <div>
+      <div class="ghost">04</div>
+      <div class="h2">Context Matters</div>
+      <div class="body">Recommendations are strongest when surfaced where the problem exists, not in a separate panel.</div>
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ━━━━━━━━━━━━━━  05  COMPETITIVE  ━━━━━━━━━━━━━ -->
+<div class="slide">
+
+  <div class="label">Competitive Analysis</div>
+
+  <div style="flex:1; display:grid; grid-template-columns:1fr 1fr; gap:0 8%;">
+
+    <!-- left col -->
+    <div style="display:flex; flex-direction:column; gap:6%;">
+
+      <div>
+        <div class="h2" style="margin-bottom:4%;">Security Platforms</div>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <div class="body"><span style="font-weight:500; color:var(--ink);">Wiz</span> &nbsp;— Contextual remediation recommendations</div>
+          <div class="body"><span style="font-weight:500; color:var(--ink);">Palo Alto</span> &nbsp;— Security workflows integrated into investigations</div>
+          <div class="body"><span style="font-weight:500; color:var(--ink);">CrowdStrike</span> &nbsp;— Guided response actions with high visibility</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="h2" style="margin-bottom:4%;">Automation Leaders</div>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <div class="body"><span style="font-weight:500; color:var(--ink);">Zapier</span> &nbsp;— Templates reduce setup effort</div>
+          <div class="body"><span style="font-weight:500; color:var(--ink);">Make</span> &nbsp;— Visual workflow understanding</div>
+          <div class="body"><span style="font-weight:500; color:var(--ink);">n8n</span> &nbsp;— Flexibility for advanced users</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- right col: principles -->
+    <div>
+      <div class="h2" style="margin-bottom:4%;">Design Principles Derived</div>
+      <div style="display:flex; flex-direction:column; gap:0;">
+        <div style="display:flex; gap:4%; padding:3% 0; border-bottom:1px solid var(--frame);">
+          <div style="color:var(--gold); font-weight:600; flex-shrink:0;">→</div>
+          <div style="font-family:'Inter',sans-serif; font-size:clamp(11px,1.15vw,15px); font-weight:500; color:var(--ink); line-height:1.3;">Show automation in context</div>
+        </div>
+        <div style="display:flex; gap:4%; padding:3% 0; border-bottom:1px solid var(--frame);">
+          <div style="color:var(--gold); font-weight:600; flex-shrink:0;">→</div>
+          <div style="font-family:'Inter',sans-serif; font-size:clamp(11px,1.15vw,15px); font-weight:500; color:var(--ink); line-height:1.3;">Explain value before activation</div>
+        </div>
+        <div style="display:flex; gap:4%; padding:3% 0; border-bottom:1px solid var(--frame);">
+          <div style="color:var(--gold); font-weight:600; flex-shrink:0;">→</div>
+          <div style="font-family:'Inter',sans-serif; font-size:clamp(11px,1.15vw,15px); font-weight:500; color:var(--ink); line-height:1.3;">Reduce setup effort</div>
+        </div>
+        <div style="display:flex; gap:4%; padding:3% 0;">
+          <div style="color:var(--gold); font-weight:600; flex-shrink:0;">→</div>
+          <div style="font-family:'Inter',sans-serif; font-size:clamp(11px,1.15vw,15px); font-weight:500; color:var(--ink); line-height:1.3;">Build trust through validation</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ━━━━━━━━━━━━━━  06  DESIGN QUESTIONS  ━━━━━━━━━ -->
+<div class="slide">
+
+  <div class="label">Key Design Questions</div>
+  <div class="title">How might we…</div>
+
+  <div style="flex:1; display:flex; flex-direction:column; justify-content:center; gap:0;">
+
+    <div style="display:flex; align-items:baseline; gap:3%; padding:3.5% 0; border-bottom:1px solid var(--frame);">
+      <div class="num" style="flex-shrink:0;">01</div>
+      <div style="font-family:'Inter',sans-serif; font-size:clamp(13px,1.6vw,20px); font-weight:500; color:var(--ink); line-height:1.3;">Identify automation opportunities at the right moment?</div>
+    </div>
+
+    <div style="display:flex; align-items:baseline; gap:3%; padding:3.5% 0; border-bottom:1px solid var(--frame);">
+      <div class="num" style="flex-shrink:0;">02</div>
+      <div style="font-family:'Inter',sans-serif; font-size:clamp(13px,1.6vw,20px); font-weight:500; color:var(--ink); line-height:1.3;">Encourage analysts to activate without leaving their workflow?</div>
+    </div>
+
+    <div style="display:flex; align-items:baseline; gap:3%; padding:3.5% 0; border-bottom:1px solid var(--frame);">
+      <div class="num" style="flex-shrink:0;">03</div>
+      <div style="font-family:'Inter',sans-serif; font-size:clamp(13px,1.6vw,20px); font-weight:500; color:var(--ink); line-height:1.3;">Build confidence before users enable an automated action?</div>
+    </div>
+
+    <div style="display:flex; align-items:baseline; gap:3%; padding:3.5% 0;">
+      <div class="num" style="flex-shrink:0;">04</div>
+      <div style="font-family:'Inter',sans-serif; font-size:clamp(13px,1.6vw,20px); font-weight:500; color:var(--ink); line-height:1.3;">Use LLMs to reduce workflow creation complexity?</div>
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ━━━━━━━━━━━━━━  07  DESIGN FLOW  ━━━━━━━━━━━━━ -->
+<div class="slide">
+
+  <div class="label">Design Flow</div>
+  <div class="title" style="margin-bottom:5%;">From issue discovery<br>to activation.</div>
+
+  <div style="flex:1; display:grid; grid-template-columns:repeat(6,1fr); gap:0;">
+
+    <div style="padding-right:4%; display:flex; flex-direction:column;">
+      <div class="ghost">1</div>
+      <div class="h2" style="font-size:clamp(10px,1.1vw,14px); margin-bottom:4%;">Investigate</div>
+      <div class="body">User reviews a policy issue in the dashboard.</div>
+    </div>
+
+    <div style="padding:0 4%; display:flex; flex-direction:column; border-left:1px solid var(--frame);">
+      <div class="ghost">2</div>
+      <div class="h2" style="font-size:clamp(10px,1.1vw,14px); margin-bottom:4%;">AI Detects</div>
+      <div class="body">AI identifies repetitive remediation patterns across findings.</div>
+    </div>
+
+    <div style="padding:0 4%; display:flex; flex-direction:column; border-left:1px solid var(--frame);">
+      <div class="ghost" style="color:var(--gold); opacity:.6;">3</div>
+      <div class="h2" style="font-size:clamp(10px,1.1vw,14px); margin-bottom:4%;">Recommend</div>
+      <div class="body">Suggestion appears within the policy experience.</div>
+      <div style="margin-top:auto; padding-top:5%; font-size:clamp(7px,.65vw,9px); font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--gold);">Key moment</div>
+    </div>
+
+    <div style="padding:0 4%; display:flex; flex-direction:column; border-left:1px solid var(--frame);">
+      <div class="ghost">4</div>
+      <div class="h2" style="font-size:clamp(10px,1.1vw,14px); margin-bottom:4%;">Explain</div>
+      <div class="body">Risk summary, impact, trigger, conditions, and actions.</div>
+    </div>
+
+    <div style="padding:0 4%; display:flex; flex-direction:column; border-left:1px solid var(--frame);">
+      <div class="ghost">5</div>
+      <div class="h2" style="font-size:clamp(10px,1.1vw,14px); margin-bottom:4%;">Validate</div>
+      <div class="body">User tests behavior through simulation before committing.</div>
+    </div>
+
+    <div style="padding-left:4%; display:flex; flex-direction:column; border-left:1px solid var(--frame);">
+      <div class="ghost">6</div>
+      <div class="h2" style="font-size:clamp(10px,1.1vw,14px); margin-bottom:4%;">Activate</div>
+      <div class="body">Automation is enabled. Rule goes live.</div>
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ━━━━━━━━━━━━━━  08  FUTURE THOUGHTS  ━━━━━━━━━ -->
+<div class="slide">
+
+  <div class="label">Future Thoughts</div>
+  <div class="title">Where this goes next.</div>
+
+  <div style="flex:1; display:grid; grid-template-columns:1fr 1fr; gap:0 8%;">
+
+    <div>
+      <div class="num">01</div>
+      <div class="h2">Conversational Automation Builder</div>
+      <div class="body">Create workflows using natural language. Describe intent; the system builds the rule.</div>
+    </div>
+
+    <div>
+      <div class="num">02</div>
+      <div class="h2">AI Simulation Agent</div>
+      <div class="body">Preview outcomes before activation. Test against real historical data in a safe environment.</div>
+    </div>
+
+    <div>
+      <div class="num">03</div>
+      <div class="h2">Personalized Recommendations</div>
+      <div class="body">Learn from analyst behaviour to surface the most relevant automation opportunities over time.</div>
+    </div>
+
+    <div>
+      <div class="num">04</div>
+      <div class="h2">Automation Impact Analytics</div>
+      <div class="body">Measure time saved, risks prevented, and adoption success across the organisation.</div>
+    </div>
+
+  </div>
+
+</div>
+
+
+</div><!-- /page -->
+</body>
+</html>
